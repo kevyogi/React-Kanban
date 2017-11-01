@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadTasks } from '../../actions/tasks';
+import NewTaskForm from '../NewTaskForm';
+import TaskList from '../TaskList';
 //import logo from './logo.svg';
 //import './App.css';
 
@@ -21,10 +23,13 @@ class App extends Component {
 
   }
 
-
   render() {
     return (
       <div className="App">
+
+        <TaskList tasks={this.props.tasks} />
+
+        <NewTaskForm/>
 
       </div>
     );
