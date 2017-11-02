@@ -10,9 +10,10 @@ const TaskList = ({ tasks }) => {
           return(
             <Task
             title={task.title}
-            priority={task.priority_id}
-            createdBy={task.createdBy_id}
-            assignedTo={task.assignedTo_id}
+            priority={task.priority.priority}
+            createdBy={task.user.name}
+            assignedTo={task.user.name}
+            status={task.status.status}
             key={task.id}
             />
           );

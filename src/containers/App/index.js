@@ -24,7 +24,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props);
+    console.log('props', this.props);
     return (
       <div className="App">
 

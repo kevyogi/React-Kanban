@@ -1,12 +1,14 @@
 import React from 'react';
 
-const Task = ( {title, priority, createdBy, assignedTo } ) => {
+const Task = ( {title, priority, createdBy, assignedTo, status } ) => {
   return (
     <div className="task">
       <div>Task:{ title }</div>
+      <div>Status: { status }</div>
       <div>Priority:{ priority }</div>
-      <div>Created by:{ createdBy }</div>
       <div>Assigned to:{ assignedTo }</div>
+      <div>Created by:{ createdBy }</div>
+      <br />
     </div>
   );
 }

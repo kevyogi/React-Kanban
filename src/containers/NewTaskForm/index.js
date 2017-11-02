@@ -10,7 +10,8 @@ class NewTaskForm extends Component{
       titleInput: '',
       priorityInput: '',
       createdInput: '',
-      assignedInput: ''
+      assignedInput: '',
+      statusInput: ''
     };
   }
 
@@ -38,20 +39,30 @@ class NewTaskForm extends Component{
     });
   }
 
+  handleChangeStatus(event){
+    this.setState({
+      statusInput:event.target.value
+    });
+  }
+
   handleSubmit(event){
     event.preventDefault();
     let newTask = {
       title: this.state.titleInput,
-      priority: this.state.priorityInput,
-      createdBy: this.state.createdInput,
-      assignedTo: this.state.assignedInput
+      priority_id: this.state.priorityInput,
+      createdBy_id: this.state.createdInput,
+      assignedTo_id: this.state.assignedInput,
+      status_id: this.state.statusInput
     };
+    console.log(this.props);
+    console.log(newTask);
     this.props.addTask(newTask);
     this.setState({
-      taskInput: '',
+      titleInput: '',
       priorityInput: '',
       createdInput: '',
-      assignedInput: ''
+      assignedInput: '',
+      statusInput: ''
     });
   }
 
@@ -63,6 +74,7 @@ class NewTaskForm extends Component{
           <input type="text" placeholder="priority" value={this.state.priorityInput} onChange={this.handleChangePriority.bind(this)}/>
           <input type="text" placeholder="created by" value={this.state.createdInput} onChange={this.handleChangeCreated.bind(this)}/>
           <input type="text" placeholder="assigned to" value={this.state.assignedInput} onChange={this.handleChangeAssigned.bind(this)}/>
+          <input type="text" placeholder="status" value={this.state.statusInput} onChange={this.handleChangeStatus.bind(this)}/>
           <input type="submit" value="Submit" />
         </form>
       </div>
