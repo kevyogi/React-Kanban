@@ -5,7 +5,7 @@ import Task from '../../components/TaskListItem';
 const DoneList = ({ tasks }) => {
   return (
     <div className="task-list">
-    <h2>Doing List</h2>
+    <h2>Finished</h2>
       {
         tasks.filter((allTasks) => {
           return allTasks.status_id === 3
