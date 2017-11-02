@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Task from '../../components/TaskListItem';
 
 const TaskList = ({ tasks }) => {

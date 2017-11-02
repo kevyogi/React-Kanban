@@ -6,7 +6,7 @@ export const ADD_TASK = 'ADD_TASK';
 
 export const loadTasks = () => {
   return function(dispatch){
-    return axios.get('/api/tasks').then((tasks) => {
+    return axios.get('/api/tasks/todo').then((tasks) => {
       console.log('taskData', tasks.data);
       dispatch({
         type: LOAD_TASKS,

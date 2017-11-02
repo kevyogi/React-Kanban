@@ -6,15 +6,61 @@ const Priority = db.priority;
 const User = db.user;
 const Status = db.status;
 
-router.get('/', (req, res) => {
+router.get('/todo', (req, res) => {
   console.log(req.body);
-  return Task.findAll({include:[{model: Priority}, {model: User}, {model: Status}]})
+  return Task.findAll({include:[{model: Priority}, {model: User}, {model: Status}],
+    where: {
+      status_id: 1
+    }
+  })
   .then((tasks) => {
     res.json(tasks);
+  })
+  .catch((error) => {
+    console.log(error);
   });
 });
 
-//router.get('/')
+router.get('/doing', (req, res) => {
+  console.log(req.body);
+  return Task.findAll({include:[{model: Priority}, {model: User}, {model: Status}],
+    where: {
+      status_id: 2
+    }
+  })
+  .then((tasks) => {
+    res.json(tasks);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+});
+
+router.get('/done', (req, res) => {
+  console.log(req.body);
+  return Task.findAll({include:[{model: Priority}, {model: User}, {model: Status}],
+    where: {
+      status_id: 3
+    }
+  })
+  .then((tasks) => {
+    res.json(tasks);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+});
+
+// router.get('/', (req, res) => {
+//   console.log(req.body);
+//   return Task.findAll({include:[{model: Priority}, {model: User}, {model: Status}]})
+//   .then((tasks) => {
+//     res.json(tasks);
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
+// });
 
 router.post('/', (req, res) => {
   return Task.create({
@@ -33,7 +79,14 @@ router.post('/', (req, res) => {
     .then((taskInfo) => {
       res.json(taskInfo);
     });
+  })
+  .catch((error) => {
+    console.log(error);
   });
 });
+
+// router.delete('/:id', (req, res) => {
+
+// })
 
 module.exports = router;
