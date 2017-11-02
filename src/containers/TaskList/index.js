@@ -8,7 +8,13 @@ const TaskList = ({ tasks }) => {
       {
         tasks.map((task) => {
           return(
-            <Task title={task.title} priority={task.priority} createdBy={task.createdBy} assignedTo={task.assignedTo} />
+            <Task
+            title={task.title}
+            priority={task.priority_id}
+            createdBy={task.createdBy_id}
+            assignedTo={task.assignedTo_id}
+            key={task.id}
+            />
           );
         })
       }

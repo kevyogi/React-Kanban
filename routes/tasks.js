@@ -4,6 +4,7 @@ const db = require('../models');
 const Task = db.task;
 
 router.get('/', (req, res) => {
+  console.log(req);
   return Task.findAll()
   .then((tasks) => {
     res.json(tasks);

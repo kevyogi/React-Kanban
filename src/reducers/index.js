@@ -1,20 +1,16 @@
 import { LOAD_TASKS } from '../actions/tasks';
 import { ADD_TASK } from '../actions/tasks';
 
-const initialState = {
-  todoList: []
-};
+const initialState = [];
 
 const reducers = (state = initialState, action) => {
   switch (action.type){
     case LOAD_TASKS:
-      return Object.assign({}, state, { todoList: [...action.tasks]})
+      return [...action.tasks];
     case ADD_TASK:
-      return Object.assign({}, state, {
-        todoList: [...state.todoList, action.task]
-      })
+      return [...state, action.task];
     default:
-      return state
+      return state;
   }
 }
 

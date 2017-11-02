@@ -20,10 +20,11 @@ class App extends Component {
   }
 
   componentDidMount(){
-
+    this.props.loadTasks()
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className="App">
 
@@ -38,14 +39,14 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    tasks: state.todoList
+    tasks: state
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadTasks: (tasks) => {
-      dispatch(loadTasks(tasks));
+    loadTasks: () => {
+      dispatch(loadTasks());
     }
   }
 }
