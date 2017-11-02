@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Task from '../../components/TaskListItem';
 
-const TaskList = ({ tasks }) => {
+const DoneList = ({ tasks }) => {
   return (
     <div className="task-list">
-    <h2>To Do List</h2>
+    <h2>Doing List</h2>
       {
         tasks.filter((allTasks) => {
-          return allTasks.status_id === 1
+          return allTasks.status_id === 3
         }).map((task) => {
           return(
             <Task
@@ -26,4 +26,4 @@ const TaskList = ({ tasks }) => {
   );
 }
 
-export default TaskList;
+export default DoneList;
