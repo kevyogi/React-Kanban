@@ -14,10 +14,9 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/')
+//router.get('/')
 
 router.post('/', (req, res) => {
-  console.log('post request', req.body);
   return Task.create({
     title: req.body.title,
     status_id: req.body.status_id,
@@ -32,7 +31,6 @@ router.post('/', (req, res) => {
       }
     })
     .then((taskInfo) => {
-      console.log(taskInfo)
       res.json(taskInfo);
     });
   });

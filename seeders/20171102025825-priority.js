@@ -3,17 +3,11 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('priority', [{
-      priority: 'High',
-      createdAt: new Date(),
-      updatedAt: new Date()
+      priority: 'High'
     }, {
-      priority: 'Medium',
-      createdAt: new Date(),
-      updatedAt: new Date()
+      priority: 'Medium'
     }, {
-      priority: 'Low',
-      createdAt: new Date(),
-      updatedAt: new Date()
+      priority: 'Low'
     }], {});
     /*
       Add altering commands here.

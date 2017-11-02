@@ -14,7 +14,8 @@ module.exports = function(sequelize, DataTypes){
     Task.belongsTo(models.status, {
       foreignKey: {
         name: 'status_id',
-        allowNull: false
+        allowNull: false,
+        defaultValue: 1
       }
     });
     Task.belongsTo(models.user, {

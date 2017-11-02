@@ -7,6 +7,10 @@ module.exports = {
       name: 'Kevin',
       createdAt: new Date(),
       updatedAt: new Date()
+    }, {
+      name: 'Ella',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }], {});
 
     /*
