@@ -31,6 +31,10 @@ router.post('/', (req, res) => {
         id: newTask.id
       }
     })
+    .then((taskInfo) => {
+      console.log(taskInfo)
+      res.json(taskInfo);
+    });
   });
 });
 

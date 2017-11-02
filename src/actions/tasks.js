@@ -17,12 +17,13 @@ export const loadTasks = () => {
 }
 
 export const addTask = (task) => {
+  console.log('task', task);
   return function(dispatch){
     return axios.post('/api/tasks', task).then((newTask) => {
       console.log('newTask', newTask);
       dispatch({
         type: ADD_TASK,
-        task: newTask
+        task: newTask.data
       });
     });
   }
