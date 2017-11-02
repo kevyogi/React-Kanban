@@ -40,8 +40,39 @@ router.post('/', (req, res) => {
   });
 });
 
-// router.delete('/:id', (req, res) => {
-
-// })
+router.put('/:id', (req, res) => {
+  const data = req.body;
+  return Task.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then((task) => {
+    return Task.update({
+      title: data.title || task.title,
+      status_id: data.status_id || task.status_id,
+      priority_id: data.priority_id || task.priority_id,
+      assignedTo_id: data.assignedTo_id || task.assignedTo_id,
+      createdBy_id: data.createdBy_id || task.createdBy_id
+    }, {
+      where: {
+        id: req.params.id
+      }
+    })
+    .then((updatedTask) => {
+      return Task.findOne({include:[{model: Priority}, {model: User}, {model: Status}],
+        where: {
+          id: req.params.id
+        }
+      })
+      .then((taskInfo) => {
+        res.json(taskInfo);
+      });
+    });
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+});
 
 module.exports = router;

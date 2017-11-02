@@ -101,11 +101,3 @@ const ConnectedNewTaskForm = connect(
 )(NewTaskForm)
 
 export default ConnectedNewTaskForm;
-
-//<select name="select" onChange={this.handleChangePriority.bind(this)}>
-  //<option value={this.state.priorityInput}>Low</option>
-  //<option value={this.state.priorityInput}>Medium</option>
-  //<option value={this.state.priorityInput}>High</option>
-//</select>
-
-// <input type="text" placeholder="priority" value={this.state.priorityInput} onChange={this.handleChangePriority.bind(this)}/>
