@@ -8,7 +8,7 @@ const Status = db.status;
 
 router.get('/', (req, res) => {
   console.log(req.body);
-  return Task.findAll({include:[{model: Priority}, {model: User}, {model: Status}]})
+  return Task.findAll({include:[{model: Priority}, {model: User, as: 'creator'}, {model: User, as: 'dev'}, {model: Status}]})
   .then((tasks) => {
     res.json(tasks);
   })
@@ -40,11 +40,11 @@ router.post('/', (req, res) => {
   });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/', (req, res) => {
   const data = req.body;
   return Task.findOne({
     where: {
-      id: req.params.id
+      id: data.id
     }
   })
   .then((task) => {
@@ -56,14 +56,11 @@ router.put('/:id', (req, res) => {
       createdBy_id: data.createdBy_id || task.createdBy_id
     }, {
       where: {
-        id: req.params.id
+        id: data.id
       }
     })
     .then((updatedTask) => {
-      return Task.findOne({include:[{model: Priority}, {model: User}, {model: Status}],
-        where: {
-          id: req.params.id
-        }
+      return Task.findAll({include:[{model: Priority}, {model: User, as: 'createdBy_id'}, {model: User, as: 'assignedTo_id'}, {model: Status}]
       })
       .then((taskInfo) => {
         res.json(taskInfo);
@@ -90,3 +87,5 @@ router.delete('/:id', (req, res) => {
 });
 
 module.exports = router;
+
+//include: [{model: user, as 'creator'}, {model: user, as 'dev'}]

@@ -9,24 +9,24 @@ module.exports = {
       updatedAt: new Date(),
       priority_id: 1,
       status_id: 1,
-      createdBy_id: 1,
-      assignedTo_id: 1
+      created_by_id: 2,
+      assigned_to_id: 1
     }, {
       title: 'Learn Redux',
       createdAt: new Date(),
       updatedAt: new Date(),
       priority_id: 2,
       status_id: 2,
-      createdBy_id: 2,
-      assignedTo_id: 2
+      created_by_id: 2,
+      assigned_to_id: 1
     }, {
       title: 'Learn Thunk',
       createdAt: new Date(),
       updatedAt: new Date(),
       priority_id: 3,
       status_id: 3,
-      createdBy_id: 1,
-      assignedTo_id: 1
+      created_by_id: 1,
+      assigned_to_id: 2
     }], {});
 
     /*

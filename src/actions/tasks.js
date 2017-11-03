@@ -32,7 +32,7 @@ export const addTask = (task) => {
 
 export const editTask = (task) => {
   return function(dispatch){
-    return axios.put('/api/tasks/:id', task).then((updatedTask) => {
+    return axios.put('/api/tasks', task).then((updatedTask) => {
       dispatch({
         type: EDIT_TASK,
         task: updatedTask.data

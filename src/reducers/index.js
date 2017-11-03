@@ -12,7 +12,7 @@ const reducers = (state = initialState, action) => {
     case ADD_TASK:
       return [...state, action.task];
     case EDIT_TASK:
-      return [...state, action.task];
+      return [...action.task];
     default:
       return state;
   }
