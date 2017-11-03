@@ -73,13 +73,13 @@ class TaskList extends Component{
   //     id: this.state.idInput
   //   };
   //   this.props.editTask(editedTask);
-  //   this.setState({
-  //     titleInput: '',
-  //     priorityInput: '',
-  //     createdInput: '',
-  //     assignedInput: '',
-  //     statusInput: ''
-  //   });
+    // this.setState({
+    //   titleInput: '',
+    //   priorityInput: '',
+    //   createdInput: '',
+    //   assignedInput: '',
+    //   statusInput: ''
+    // });
 
   // }
 
@@ -129,7 +129,15 @@ class TaskList extends Component{
                       status_id: this.state.statusInput,
                       id: this.state.idInput
                     };
+                    console.log('edit:', editedTask);
                     this.props.editTask(editedTask);
+                    this.setState({
+                      titleInput: '',
+                      priorityInput: '',
+                      createdInput: '',
+                      assignedInput: '',
+                      statusInput: ''
+                    });
                   }}>
                     Task: <input type="text" placeholder={task.title} value={this.state.titleInput} onChange={this.handleChangeTitle.bind(this)}/><br/>
 
