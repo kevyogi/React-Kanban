@@ -55,7 +55,7 @@ class NewTaskForm extends Component{
       assigned_to_id: this.state.assignedInput
       //status_id: this.state.statusInput
     };
-    console.log(this.props);
+    //console.log(this.props);
     console.log(newTask);
     this.props.addTask(newTask);
     this.setState({
@@ -68,6 +68,7 @@ class NewTaskForm extends Component{
   }
 
   render(){
+    //console.log(this.props)
     return (
       <div>
         <form onSubmit={this.handleSubmit.bind(this)}>

@@ -89,7 +89,7 @@ class TaskList extends Component{
       <div className="task-list">
       <h2>In Progress</h2>
         {
-          this.props.tasks.filter((allTasks) => {
+          this.props.tasks.taskList.filter((allTasks) => {
             return allTasks.status_id === 2
           }).map((task) => {
             return(
@@ -129,7 +129,7 @@ class TaskList extends Component{
                       status_id: this.state.statusInput,
                       id: this.state.idInput
                     };
-                    console.log('edit:', editedTask);
+                    //console.log('edit:', editedTask);
                     this.props.editTask(editedTask);
                     this.setState({
                       titleInput: '',

@@ -48,48 +48,13 @@ class TaskList extends Component{
     });
   }
 
-  // handleClickEdit(event){
-  //   //console.log('!!!!!', this.state)
-  //   let queue = document.getElementById('queue');
-  //   let editQueue = document.getElementById('editQueue');
-  //   queue.style.display = "none";
-  //   editQueue.style.display = "block";
-  // }
-
-  // handleSubmitEdit(event){
-  //   //console.log(event.target);
-  //   event.preventDefault();
-  //   let queue = document.getElementById(task.id);
-  //   let editQueue = document.getElementById(task.id+'a');
-  //   queue.style.display = "block";
-  //   editQueue.style.display = "none";
-  //   //console.log('yo edit', this.props);
-  //   let editedTask = {
-  //     title: this.state.titleInput,
-  //     priority_id: this.state.priorityInput,
-  //     createdBy_id: this.state.createdInput,
-  //     assignedTo_id: this.state.assignedInput,
-  //     status_id: this.state.statusInput,
-  //     id: this.state.idInput
-  //   };
-  //   this.props.editTask(editedTask);
-    // this.setState({
-    //   titleInput: '',
-    //   priorityInput: '',
-    //   createdInput: '',
-    //   assignedInput: '',
-    //   statusInput: ''
-    // });
-
-  // }
-
   render(){
-    //console.log('state:', this.props)
+    console.log('props:', this.props)
     return (
       <div className="task-list">
-      <h2>Queue</h2>
+      <h2>Finished</h2>
         {
-          this.props.tasks.filter((allTasks) => {
+          this.props.tasks.taskList.filter((allTasks) => {
             return allTasks.status_id === 1
           }).map((task) => {
             return(
@@ -129,7 +94,7 @@ class TaskList extends Component{
                       status_id: this.state.statusInput,
                       id: this.state.idInput
                     };
-                    console.log('edit:', editedTask);
+                    //console.log('edit:', editedTask);
                     this.props.editTask(editedTask);
                     this.setState({
                       titleInput: '',
@@ -187,7 +152,3 @@ const ConnectedTaskList = connect(
 )(TaskList)
 
 export default ConnectedTaskList;
-
-// this.handleClickEdit.bind(this)
-
-//this.setState({idInput: task.id})
