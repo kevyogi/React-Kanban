@@ -16,6 +16,7 @@ class NewTaskForm extends Component{
   }
 
   handleChangeTitle(event){
+    //console.log(props);
     this.setState({
       titleInput:event.target.value
     });

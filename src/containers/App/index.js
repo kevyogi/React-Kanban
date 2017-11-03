@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadTasks } from '../../actions/tasks';
 import NewTaskForm from '../NewTaskForm';
+import EditTaskForm from '../EditTaskForm';
 import TaskList from '../TaskList';
 import DoingList from '../TaskList/doing';
 import DoneList from '../TaskList/done';

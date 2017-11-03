@@ -3,6 +3,7 @@
 const axios = require('axios');
 export const LOAD_TASKS = 'LOAD_TASKS';
 export const ADD_TASK = 'ADD_TASK';
+export const EDIT_TASK = 'EDIT_TASK';
 
 export const loadTasks = () => {
   return function(dispatch){
@@ -24,6 +25,17 @@ export const addTask = (task) => {
       dispatch({
         type: ADD_TASK,
         task: newTask.data
+      });
+    });
+  }
+}
+
+export const editTask = (task) => {
+  return function(dispatch){
+    return axios.put('/api/tasks/:id', task).then((updatedTask) => {
+      dispatch({
+        type: EDIT_TASK,
+        task: updatedTask.data
       });
     });
   }
