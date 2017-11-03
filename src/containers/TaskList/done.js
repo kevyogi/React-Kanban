@@ -48,46 +48,11 @@ class TaskList extends Component{
     });
   }
 
-  // handleClickEdit(event){
-  //   //console.log('!!!!!', this.state)
-  //   let queue = document.getElementById('queue');
-  //   let editQueue = document.getElementById('editQueue');
-  //   queue.style.display = "none";
-  //   editQueue.style.display = "block";
-  // }
-
-  // handleSubmitEdit(event){
-  //   //console.log(event.target);
-  //   event.preventDefault();
-  //   let queue = document.getElementById(task.id);
-  //   let editQueue = document.getElementById(task.id+'a');
-  //   queue.style.display = "block";
-  //   editQueue.style.display = "none";
-  //   //console.log('yo edit', this.props);
-  //   let editedTask = {
-  //     title: this.state.titleInput,
-  //     priority_id: this.state.priorityInput,
-  //     createdBy_id: this.state.createdInput,
-  //     assignedTo_id: this.state.assignedInput,
-  //     status_id: this.state.statusInput,
-  //     id: this.state.idInput
-  //   };
-  //   this.props.editTask(editedTask);
-  //   this.setState({
-  //     titleInput: '',
-  //     priorityInput: '',
-  //     createdInput: '',
-  //     assignedInput: '',
-  //     statusInput: ''
-  //   });
-
-  // }
-
   render(){
     //console.log('state:', this.props)
     return (
       <div className="task-list">
-      <h2>Queue</h2>
+      <h2>Finished</h2>
         {
           this.props.tasks.filter((allTasks) => {
             return allTasks.status_id === 3
@@ -134,9 +99,9 @@ class TaskList extends Component{
                     Task: <input type="text" placeholder={task.title} value={this.state.titleInput} onChange={this.handleChangeTitle.bind(this)}/><br/>
 
                     Status: <select name="status" defaultValue={task.status_id} onChange={this.handleChangeStatus.bind(this)}>
-                      <option value="1">To Do</option>
-                      <option value="2">Doing</option>
-                      <option value="3">Done</option>
+                      <option value="1">Queue</option>
+                      <option value="2">In Progress</option>
+                      <option value="3">Finished</option>
                     </select><br/>
 
                     Priority: <select name="priority" defaultValue={task.priority_id} onChange={this.handleChangePriority.bind(this)}>
@@ -179,7 +144,3 @@ const ConnectedTaskList = connect(
 )(TaskList)
 
 export default ConnectedTaskList;
-
-// this.handleClickEdit.bind(this)
-
-//this.setState({idInput: task.id})

@@ -134,9 +134,9 @@ class TaskList extends Component{
                     Task: <input type="text" placeholder={task.title} value={this.state.titleInput} onChange={this.handleChangeTitle.bind(this)}/><br/>
 
                     Status: <select name="status" defaultValue={task.status_id} onChange={this.handleChangeStatus.bind(this)}>
-                      <option value="1">To Do</option>
-                      <option value="2">Doing</option>
-                      <option value="3">Done</option>
+                      <option value="1">Queue</option>
+                      <option value="2">In Progress</option>
+                      <option value="3">Finished</option>
                     </select><br/>
 
                     Priority: <select name="priority" defaultValue={task.priority_id} onChange={this.handleChangePriority.bind(this)}>

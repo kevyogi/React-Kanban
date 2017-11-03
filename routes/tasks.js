@@ -22,11 +22,11 @@ router.post('/', (req, res) => {
     title: req.body.title,
     status_id: req.body.status_id,
     priority_id: req.body.priority_id,
-    assignedTo_id: req.body.assignedTo_id,
-    createdBy_id: req.body.createdBy_id
+    assigned_to_id: req.body.assigned_to_id,
+    created_by_id: req.body.created_by_id
   })
   .then((newTask) => {
-    return Task.findOne({include:[{model: Priority}, {model: User}, {model: Status}],
+    return Task.findOne({include:[{model: Priority}, {model: User, as: 'creator'}, {model: User, as: 'dev'}, {model: Status}],
       where: {
         id: newTask.id
       }
@@ -52,15 +52,15 @@ router.put('/', (req, res) => {
       title: data.title || task.title,
       status_id: data.status_id || task.status_id,
       priority_id: data.priority_id || task.priority_id,
-      assignedTo_id: data.assignedTo_id || task.assignedTo_id,
-      createdBy_id: data.createdBy_id || task.createdBy_id
+      assigned_to_id: data.assigned_to_id || task.assigned_to_id,
+      created_by_id: data.created_by_id || task.created_by_id
     }, {
       where: {
         id: data.id
       }
     })
     .then((updatedTask) => {
-      return Task.findAll({include:[{model: Priority}, {model: User, as: 'createdBy_id'}, {model: User, as: 'assignedTo_id'}, {model: Status}]
+      return Task.findAll({include:[{model: Priority}, {model: User, as: 'creator'}, {model: User, as: 'dev'}, {model: Status}]
       })
       .then((taskInfo) => {
         res.json(taskInfo);

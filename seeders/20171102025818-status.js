@@ -4,11 +4,11 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
 
     return queryInterface.bulkInsert('status', [{
-      status: 'To Do'
+      status: 'Queue'
     }, {
-      status: 'Doing'
+      status: 'In Progress'
     }, {
-      status: 'Done'
+      status: 'Finished'
     }], {});
 
   },

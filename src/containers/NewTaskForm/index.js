@@ -51,8 +51,8 @@ class NewTaskForm extends Component{
     let newTask = {
       title: this.state.titleInput,
       priority_id: this.state.priorityInput || "3",
-      createdBy_id: this.state.createdInput,
-      assignedTo_id: this.state.assignedInput
+      created_by_id: this.state.createdInput,
+      assigned_to_id: this.state.assignedInput
       //status_id: this.state.statusInput
     };
     console.log(this.props);
