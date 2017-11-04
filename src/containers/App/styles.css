@@ -1,28 +1,27 @@
 .App {
-  text-align: center;
+  /*text-align: center;*/
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+#header-div{
+  display: flex;
+  justify-content: space-around;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+#list-div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
-.App-title {
-  font-size: 1.5em;
+#newTaskDiv{
+  display: flex;
+  justify-content: space-around;
 }
 
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+#newTaskHeader{
+  display: flex;
+  justify-content: space-around;
 }

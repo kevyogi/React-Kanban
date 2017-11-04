@@ -48,41 +48,6 @@ class TaskList extends Component{
     });
   }
 
-  // handleClickEdit(event){
-  //   //console.log('!!!!!', this.state)
-  //   let queue = document.getElementById('queue');
-  //   let editQueue = document.getElementById('editQueue');
-  //   queue.style.display = "none";
-  //   editQueue.style.display = "block";
-  // }
-
-  // handleSubmitEdit(event){
-  //   //console.log(event.target);
-  //   event.preventDefault();
-  //   let queue = document.getElementById(task.id);
-  //   let editQueue = document.getElementById(task.id+'a');
-  //   queue.style.display = "block";
-  //   editQueue.style.display = "none";
-  //   //console.log('yo edit', this.props);
-  //   let editedTask = {
-  //     title: this.state.titleInput,
-  //     priority_id: this.state.priorityInput,
-  //     createdBy_id: this.state.createdInput,
-  //     assignedTo_id: this.state.assignedInput,
-  //     status_id: this.state.statusInput,
-  //     id: this.state.idInput
-  //   };
-  //   this.props.editTask(editedTask);
-  //   this.setState({
-  //     titleInput: '',
-  //     priorityInput: '',
-  //     createdInput: '',
-  //     assignedInput: '',
-  //     statusInput: ''
-  //   });
-
-  // }
-
   render(){
     //console.log('state:', this.props)
     return (
@@ -153,8 +118,25 @@ class TaskList extends Component{
                       <option value="1">High</option>
                     </select><br/>
 
-                    Assigned to: <input type="text" placeholder={task.dev.name} value={this.state.assignedInput} onChange={this.handleChangeAssigned.bind(this)}/><br/>
-                    Created by: <input type="text" placeholder={task.creator.name} value={this.state.createdInput} onChange={this.handleChangeCreated.bind(this)}/><br/><br/>
+                    Assigned to: <select onChange={this.handleChangeAssigned.bind(this)} value={task.dev.id}>
+                                  {
+                                    this.props.users.map((user) => {
+                                      return(
+                                        <option value={user.id}>{user.name}</option>
+                                      )
+                                    })
+                                  }
+                                 </select><br/>
+
+                    Created by: <select onChange={this.handleChangeCreated.bind(this)} value={task.creator.id}>
+                                 {
+                                  this.props.users.map((user) => {
+                                    return(
+                                      <option value={user.id}>{user.name}</option>
+                                    )
+                                  })
+                                 }
+                                </select> <br/><br/>
                     <input type="submit" value="Done" /><br/>
                   </form>
                 </div>
@@ -169,7 +151,8 @@ class TaskList extends Component{
 
 const mapStateToProps = (state) => {
   return {
-    tasks: state
+    tasks: state,
+    users: state.userList
   }
 }
 
@@ -187,7 +170,3 @@ const ConnectedTaskList = connect(
 )(TaskList)
 
 export default ConnectedTaskList;
-
-// this.handleClickEdit.bind(this)
-
-//this.setState({idInput: task.id})

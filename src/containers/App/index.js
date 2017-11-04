@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadTasks } from '../../actions/tasks';
+import { loadUsers } from '../../actions/users';
 import NewTaskForm from '../NewTaskForm';
-import EditTaskForm from '../EditTaskForm';
 import TaskList from '../TaskList';
 import DoingList from '../TaskList/doing';
 import DoneList from '../TaskList/done';
 //import logo from './logo.svg';
-//import './App.css';
+import './styles.css';
 
 class App extends Component {
   constructor(){
@@ -23,7 +23,8 @@ class App extends Component {
   }
 
   componentDidMount(){
-    this.props.loadTasks()
+    this.props.loadTasks();
+    this.props.loadUsers();
   }
 
   render() {
@@ -32,13 +33,27 @@ class App extends Component {
     return (
       <div className="App">
 
-        <TaskList tasks={this.props.tasks} />
+        <div id="header-div">
+          <h1 id="header">Kanban</h1>
+        </div>
 
-        <DoingList tasks={this.props.tasks} />
+        <div id="list-div">
+          <div>
+            <TaskList tasks={this.props.tasks} />
+          </div>
 
-        <DoneList tasks={this.props.tasks} />
+          <div>
+            <DoingList tasks={this.props.tasks} />
+          </div>
 
-        <NewTaskForm/>
+          <div>
+            <DoneList tasks={this.props.tasks} />
+          </div>
+        </div>
+
+        <div id="newTaskDiv">
+          <NewTaskForm/>
+        </div>
 
       </div>
     );
@@ -55,6 +70,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     loadTasks: () => {
       dispatch(loadTasks());
+    },
+    loadUsers: () => {
+      dispatch(loadUsers());
     }
   }
 }

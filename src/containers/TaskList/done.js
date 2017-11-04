@@ -118,8 +118,25 @@ class TaskList extends Component{
                       <option value="1">High</option>
                     </select><br/>
 
-                    Assigned to: <input type="text" placeholder={task.dev.name} value={this.state.assignedInput} onChange={this.handleChangeAssigned.bind(this)}/><br/>
-                    Created by: <input type="text" placeholder={task.creator.name} value={this.state.createdInput} onChange={this.handleChangeCreated.bind(this)}/><br/><br/>
+                    Assigned to: <select onChange={this.handleChangeAssigned.bind(this)} value={task.dev.id}>
+                                  {
+                                    this.props.users.map((user) => {
+                                      return(
+                                        <option value={user.id}>{user.name}</option>
+                                      )
+                                    })
+                                  }
+                                 </select><br/>
+
+                    Created by: <select onChange={this.handleChangeCreated.bind(this)} value={task.creator.id}>
+                                 {
+                                  this.props.users.map((user) => {
+                                    return(
+                                      <option value={user.id}>{user.name}</option>
+                                    )
+                                  })
+                                 }
+                                </select> <br/><br/>
                     <input type="submit" value="Done" /><br/>
                   </form>
                 </div>
@@ -134,7 +151,8 @@ class TaskList extends Component{
 
 const mapStateToProps = (state) => {
   return {
-    tasks: state
+    tasks: state,
+    users: state.userList
   }
 }
 
