@@ -39,15 +39,15 @@ class App extends Component {
 
         <div id="list-div">
           <div>
-            <TaskList tasks={this.props.tasks} />
+            <TaskList/>
           </div>
 
           <div>
-            <DoingList tasks={this.props.tasks} />
+            <DoingList/>
           </div>
 
           <div>
-            <DoneList tasks={this.props.tasks} />
+            <DoneList/>
           </div>
         </div>
 

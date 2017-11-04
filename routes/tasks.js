@@ -7,7 +7,6 @@ const User = db.user;
 const Status = db.status;
 
 router.get('/', (req, res) => {
-  console.log(req.body);
   return Task.findAll({include:[{model: Priority}, {model: User, as: 'creator'}, {model: User, as: 'dev'}, {model: Status}]})
   .then((tasks) => {
     res.json(tasks);
@@ -17,7 +16,7 @@ router.get('/', (req, res) => {
   });
 });
 
-router.post('/', (req, res) => {
+router.post('/new', (req, res) => {
   return Task.create({
     title: req.body.title,
     status_id: req.body.status_id,
@@ -26,10 +25,7 @@ router.post('/', (req, res) => {
     created_by_id: req.body.created_by_id
   })
   .then((newTask) => {
-    return Task.findOne({include:[{model: Priority}, {model: User, as: 'creator'}, {model: User, as: 'dev'}, {model: Status}],
-      where: {
-        id: newTask.id
-      }
+    return newTask.reload({include:[{model: Priority}, {model: User, as: 'creator'}, {model: User, as: 'dev'}, {model: Status}]
     })
     .then((taskInfo) => {
       res.json(taskInfo);
@@ -40,7 +36,7 @@ router.post('/', (req, res) => {
   });
 });
 
-router.put('/', (req, res) => {
+router.put('/:id/edit', (req, res) => {
   const data = req.body;
   return Task.findOne({
     where: {
@@ -57,10 +53,11 @@ router.put('/', (req, res) => {
     }, {
       where: {
         id: data.id
-      }
+      },
+      returning: true
     })
     .then((updatedTask) => {
-      return Task.findAll({include:[{model: Priority}, {model: User, as: 'creator'}, {model: User, as: 'dev'}, {model: Status}]
+      return updatedTask[1][0].reload({include:[{model: Priority}, {model: User, as: 'creator'}, {model: User, as: 'dev'}, {model: Status}]
       })
       .then((taskInfo) => {
         res.json(taskInfo);
@@ -72,14 +69,14 @@ router.put('/', (req, res) => {
   });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id/delete', (req, res) => {
   Task.destroy({
     where: {
       id: req.params.id
     }
   })
   .then((response) => {
-    res.json(response);
+    res.status(200).json(req.params.id);
   })
   .catch((error) => {
     console.log(error);
@@ -87,5 +84,3 @@ router.delete('/:id', (req, res) => {
 });
 
 module.exports = router;
-
-//include: [{model: user, as 'creator'}, {model: user, as 'dev'}]

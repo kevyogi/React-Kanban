@@ -122,5 +122,3 @@ const ConnectedNewTaskForm = connect(
 )(NewTaskForm)
 
 export default ConnectedNewTaskForm;
-
-//<input type="text" placeholder="created by" value={this.state.createdInput} onChange={this.handleChangeCreated.bind(this)}/>
