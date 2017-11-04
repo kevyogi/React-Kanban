@@ -38,9 +38,11 @@ router.post('/new', (req, res) => {
 
 router.put('/:id/edit', (req, res) => {
   const data = req.body;
+  const ID = req.params.id;
+  console.log(data);
   return Task.findOne({
     where: {
-      id: data.id
+      id: ID
     }
   })
   .then((task) => {
@@ -52,12 +54,15 @@ router.put('/:id/edit', (req, res) => {
       created_by_id: data.created_by_id || task.created_by_id
     }, {
       where: {
-        id: data.id
+        id: ID
       },
       returning: true
     })
     .then((updatedTask) => {
-      return updatedTask[1][0].reload({include:[{model: Priority}, {model: User, as: 'creator'}, {model: User, as: 'dev'}, {model: Status}]
+      return Task.findOne({include:[{model: Priority}, {model: User, as: 'creator'}, {model: User, as: 'dev'}, {model: Status}],
+        where: {
+          id: ID
+        }
       })
       .then((taskInfo) => {
         res.json(taskInfo);

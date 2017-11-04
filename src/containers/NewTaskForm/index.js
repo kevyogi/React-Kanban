@@ -66,15 +66,17 @@ class NewTaskForm extends Component{
       <div>
         <h2 id="newTaskHeader">Create New Task</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
+          Task:
           <input type="text" placeholder="title" value={this.state.titleInput} onChange={this.handleChangeTitle.bind(this)}/>
-
+          <br/>
+          Priority:
           <select name="select" onChange={this.handleChangePriority.bind(this)}>
             <option value="3">Low</option>
             <option value="2">Medium</option>
             <option value="1">High</option>
           </select>
-
-
+          <br/>
+          Created by:
           <select onChange={this.handleChangeCreated.bind(this)}>
             {
               this.props.users.map((user) => {
@@ -84,7 +86,8 @@ class NewTaskForm extends Component{
               })
             }
           </select>
-
+          <br/>
+          Assigned to:
           <select onChange={this.handleChangeAssigned.bind(this)}>
             {
               this.props.users.map((user) => {
@@ -94,7 +97,7 @@ class NewTaskForm extends Component{
               })
             }
           </select>
-
+          <br/>
           <input type="submit" value="Submit" />
         </form>
       </div>

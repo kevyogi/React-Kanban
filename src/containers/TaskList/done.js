@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Task from '../../components/TaskListItem';
-import { editTask } from '../../actions/tasks';
+import { editTask, deleteTask } from '../../actions/tasks';
 
 class TaskList extends Component{
   constructor(props){
@@ -138,6 +138,16 @@ class TaskList extends Component{
                                  }
                                 </select> <br/><br/>
                     <input type="submit" value="Done" /><br/>
+                    <div>
+                      <input type="submit" value="Delete" onClick={(event) => {
+                        event.preventDefault();
+                        let targetTask = {
+                          id: this.state.idInput
+                        };
+                        console.log(targetTask);
+                        this.props.deleteTask(targetTask);
+                      }}/>
+                    </div>
                   </form>
                 </div>
               </div>
@@ -160,6 +170,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     editTask: (task) => {
       dispatch(editTask(task))
+    },
+    deleteTask: (task) => {
+      dispatch(deleteTask(task))
     }
   }
 }
