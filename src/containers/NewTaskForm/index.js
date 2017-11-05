@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addTask } from '../../actions/tasks';
-//import { loadUsers } from '../../actions/users';
+import  Select from '../../components/Select';
 
 class NewTaskForm extends Component{
   constructor(props){
@@ -12,12 +12,10 @@ class NewTaskForm extends Component{
       priorityInput: '',
       createdInput: '',
       assignedInput: ''
-      //statusInput: ''
     };
   }
 
   handleChangeTitle(event){
-    //console.log(props);
     this.setState({
       titleInput:event.target.value
     });
@@ -49,8 +47,7 @@ class NewTaskForm extends Component{
       created_by_id: this.state.createdInput || "1",
       assigned_to_id: this.state.assignedInput || "1"
     };
-    //console.log(this.props);
-    console.log(newTask);
+    //console.log(newTask);
     this.props.addTask(newTask);
     this.setState({
       titleInput: '',
@@ -61,43 +58,16 @@ class NewTaskForm extends Component{
   }
 
   render(){
-    //console.log('newtaskform', this.props.users)
+    console.log('newtaskform', this.props)
     return (
       <div>
         <h2 id="newTaskHeader">Create New Task</h2>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          Task:
+          <span>Task:</span>
           <input type="text" placeholder="title" value={this.state.titleInput} onChange={this.handleChangeTitle.bind(this)}/>
-          <br/>
-          Priority:
-          <select name="select" onChange={this.handleChangePriority.bind(this)}>
-            <option value="3">Low</option>
-            <option value="2">Medium</option>
-            <option value="1">High</option>
-          </select>
-          <br/>
-          Created by:
-          <select onChange={this.handleChangeCreated.bind(this)}>
-            {
-              this.props.users.map((user) => {
-                return(
-                  <option value={user.id}>{user.name}</option>
-                )
-              })
-            }
-          </select>
-          <br/>
-          Assigned to:
-          <select onChange={this.handleChangeAssigned.bind(this)}>
-            {
-              this.props.users.map((user) => {
-                return(
-                  <option value={user.id}>{user.name}</option>
-                )
-              })
-            }
-          </select>
-          <br/>
+          <Select list={this.props.priority} handler={this.handleChangePriority.bind(this)} display="priority" label="Priority:"/>
+          <Select list={this.props.users} handler={this.handleChangeAssigned.bind(this)} display="name" label="Assigned to:"/>
+          <Select list={this.props.users} handler={this.handleChangeCreated.bind(this)} display="name" label="Created by:"/>
           <input type="submit" value="Submit" />
         </form>
       </div>
@@ -107,7 +77,9 @@ class NewTaskForm extends Component{
 
 const mapStateToProps = (state) => {
   return {
-    users: state.userList
+    users: state.userList,
+    priority: state.priorityList,
+    status: state.statusList
   }
 }
 

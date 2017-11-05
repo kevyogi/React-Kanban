@@ -7,7 +7,8 @@ const User = db.user;
 const Status = db.status;
 
 router.get('/', (req, res) => {
-  return Task.findAll({include:[{model: Priority}, {model: User, as: 'creator'}, {model: User, as: 'dev'}, {model: Status}]})
+  return Task.findAll({include:[{model: Priority}, {model: User, as: 'creator'}, {model: User, as: 'dev'}, {model: Status}],
+    order: [['priority_id', 'ASC']]})
   .then((tasks) => {
     res.json(tasks);
   })

@@ -56,7 +56,7 @@ class TaskList extends Component{
         {
           this.props.tasks.taskList.filter((allTasks) => {
             return allTasks.status_id === 2
-          }).map((task) => {
+          }).sort(function (a, b) {return a.priority_id - b.priority_id;}).map((task) => {
             return(
               <div>
                 <div id={task.id}>

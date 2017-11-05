@@ -56,7 +56,7 @@ class TaskList extends Component{
         {
           this.props.tasks.taskList.filter((allTasks) => {
             return allTasks.status_id === 1
-          }).map((task) => {
+          }).sort(function (a, b) {return a.priority_id - b.priority_id;}).map((task) => {
             return(
               <div>
                 <div id={task.id}>
@@ -72,12 +72,11 @@ class TaskList extends Component{
                   <input type="submit" value="Edit" onClick={(e) => {
                     let queue = document.getElementById(task.id);
                     let editQueue = document.getElementById(task.id+'a');
-                    queue.style.display = "none";
+                    //queue.style.display = "none";
                     editQueue.style.display = "block";
                     this.setState({idInput: task.id});
                   }}/>
                 </div>
-
                 <div id={task.id+'a'} style={{display:'none'}}>
                   <form onSubmit={(e) => {
                     e.preventDefault();
@@ -85,7 +84,7 @@ class TaskList extends Component{
                     let editQueue = document.getElementById(task.id+'a');
                     queue.style.display = "block";
                     editQueue.style.display = "none";
-                    //console.log('yo edit', this.props);
+                    console.log('yo edit', this.props);
                     let editedTask = {
                       title: this.state.titleInput,
                       priority_id: this.state.priorityInput,

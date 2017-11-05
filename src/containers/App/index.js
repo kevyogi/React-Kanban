@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadTasks } from '../../actions/tasks';
 import { loadUsers } from '../../actions/users';
+import { loadPriority } from '../../actions/priority';
+import { loadStatus } from '../../actions/status';
 import NewTaskForm from '../NewTaskForm';
 import TaskList from '../TaskList';
 import DoingList from '../TaskList/doing';
 import DoneList from '../TaskList/done';
-//import logo from './logo.svg';
 import './styles.css';
 
 class App extends Component {
@@ -25,6 +26,8 @@ class App extends Component {
   componentDidMount(){
     this.props.loadTasks();
     this.props.loadUsers();
+    this.props.loadPriority();
+    this.props.loadStatus();
   }
 
   render() {
@@ -73,6 +76,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     loadUsers: () => {
       dispatch(loadUsers());
+    },
+    loadPriority: () => {
+      dispatch(loadPriority());
+    },
+    loadStatus: () => {
+      dispatch(loadStatus());
     }
   }
 }
