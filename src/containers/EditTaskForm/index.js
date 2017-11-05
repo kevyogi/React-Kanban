@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { editTask } from '../../actions/tasks';
-
-//<EditTaskForm cardInstance=task>
+import { editTask, deleteTask } from '../../actions/tasks';
+import  Select from '../../components/Select';
 
 class EditTaskForm extends Component{
   constructor(props){
     super(props);
-    console.log(this.props);
 
     this.state = {
       titleInput: '',
       priorityInput: '',
       createdInput: '',
       assignedInput: '',
-      statusInput: '',
-      idInput: ''
+      statusInput: ''
     };
   }
   handleChangeTitle(event){
@@ -48,44 +45,39 @@ class EditTaskForm extends Component{
     });
   }
 
+  handleSubmit(event){
+    event.preventDefault();
+    console.log('here!')
+    let taskId = this.props.task.id;
+    let editedTask = {
+      title: this.state.titleInput,
+      priority_id: this.state.priorityInput,
+      created_by_id: this.state.createdInput,
+      assigned_to_id: this.state.assignedInput,
+      status_id: this.state.statusInput,
+      id: taskId
+    }
+    console.log(editedTask);
+    this.props.editTask(editedTask);
+    this.setState({
+      titleInput: '',
+      priorityInput: '',
+      createdInput: '',
+      assignedInput: '',
+      statusInput: ''
+    });
+  }
+
   render(){
     return(
       <div>
-        <form>
-          Task: <input type="text" placeholder={task.title} value={this.state.titleInput} onChange={this.handleChangeTitle.bind(this)}/><br/>
-
-          Status: <select name="status" defaultValue={task.status_id} onChange={this.handleChangeStatus.bind(this)}>
-            <option value="1">Queue</option>
-            <option value="2">In Progress</option>
-            <option value="3">Finished</option>
-          </select><br/>
-
-          Priority: <select name="priority" defaultValue={task.priority_id} onChange={this.handleChangePriority.bind(this)}>
-            <option value="3">Low</option>
-            <option value="2">Medium</option>
-            <option value="1">High</option>
-          </select><br/>
-
-          Assigned to: <select onChange={this.handleChangeAssigned.bind(this)} value={task.dev.id}>
-                        {
-                          this.props.users.map((user) => {
-                            return(
-                              <option value={user.id}>{user.name}</option>
-                            )
-                          })
-                        }
-                       </select><br/>
-
-          Created by: <select onChange={this.handleChangeCreated.bind(this)} value={task.creator.id}>
-                       {
-                        this.props.users.map((user) => {
-                          return(
-                            <option value={user.id}>{user.name}</option>
-                          )
-                        })
-                       }
-                      </select> <br/><br/>
-          <input type="submit" value="Done" /><br/>
+        <form onSubmit={this.handleSubmit.bind(this)}>
+          <input type="text" placeholder={this.props.task.title} value={this.state.titleInput} onChange={this.handleChangeTitle.bind(this)} />
+          <Select list={this.props.status} handler={this.handleChangeStatus.bind(this)} display="status" label="Status:" defaultValue={this.props.task.status_id}/>
+          <Select list={this.props.priority} handler={this.handleChangePriority.bind(this)} display="priority" label="Priority:" defaultValue={this.props.task.priority_id}/>
+          <Select list={this.props.users} handler={this.handleChangeAssigned.bind(this)} display="name" label="Assigned to:" defaultValue={this.props.task.dev.id}/>
+          <Select list={this.props.users} handler={this.handleChangeCreated.bind(this)} display="name" label="Created by:" defaultValue={this.props.task.creator.id}/>
+          <input type="submit" value="Done" />
         </form>
       </div>
     )
@@ -93,9 +85,11 @@ class EditTaskForm extends Component{
 }
 
 const mapStateToProps = (state) => {
-  return{
+  return {
+    tasks: state.taskList,
     users: state.userList,
-    tasks: state.taskList
+    priority: state.priorityList,
+    status: state.statusList
   }
 }
 
@@ -103,6 +97,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     editTask: (task) => {
       dispatch(editTask(task))
+    },
+    deleteTask: (task) => {
+      dispatch(deleteTask(task))
     }
   }
 }

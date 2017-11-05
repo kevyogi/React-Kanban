@@ -60,15 +60,7 @@ class TaskList extends Component{
             return(
               <div>
                 <div id={task.id}>
-                  <Task
-                  title={task.title}
-                  priority={task.priority.priority}
-                  createdBy={task.creator.name}
-                  assignedTo={task.dev.name}
-                  status={task.status.status}
-                  id={task.id}
-                  key={task.id}
-                  />
+                  <Task task={task}/>
                   <input type="submit" value="Edit" onClick={(e) => {
                     let queue = document.getElementById(task.id);
                     let editQueue = document.getElementById(task.id+'a');

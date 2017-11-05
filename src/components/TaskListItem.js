@@ -1,15 +1,17 @@
 import React from 'react';
+import EditTaskForm from '../containers/EditTaskForm';
 
-const Task = ( {title, priority, createdBy, assignedTo, status, id } ) => {
+const Task = ( { task, state } ) => {
   return (
     <div className="task">
-      <div>Task: { title }</div>
-      <div>Status: { status }</div>
-      <div>Priority: { priority }</div>
-      <div>Assigned to: { assignedTo }</div>
-      <div>Created by: { createdBy }</div>
-      <div>ID: { id }</div>
+      <div>Task: { task.title }</div>
+      <div>Status: { task.status.status }</div>
+      <div>Priority: { task.priority.priority }</div>
+      <div>Assigned to: { task.dev.name }</div>
+      <div>Created by: { task.creator.name }</div>
+      <div>ID: { task.id }</div>
       <br />
+      <EditTaskForm task={task}/>
     </div>
   );
 }
