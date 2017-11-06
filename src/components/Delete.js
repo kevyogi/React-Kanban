@@ -1,11 +1,11 @@
-// import React from 'react';
+import React from 'react';
 
-// const Delete = ( {id, func} ) => {
-//   return (
-//     <div>
-//       <input type="submit" value="Delete" onClick={func} />
-//     </div>
-//   )
-// }
+const Delete = ( {handler} ) => {
+  return (
+    <div>
+      <input type="submit" value="Delete" onClick={handler} />
+    </div>
+  )
+}
 
-// export default Delete;
+export default Delete;

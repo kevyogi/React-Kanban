@@ -58,7 +58,7 @@ class NewTaskForm extends Component{
   }
 
   render(){
-    console.log('newtaskform', this.props)
+    //console.log('newtaskform', this.props)
     return (
       <div>
         <h2 id="newTaskHeader">Create New Task</h2>

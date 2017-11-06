@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Task from '../../components/TaskListItem';
 import { editTask, deleteTask } from '../../actions/tasks';
-import Select from '../../components/Select';
 import FilterMap from '../../components/FilterMap';
 
 class TaskList extends Component{
@@ -14,8 +12,9 @@ class TaskList extends Component{
     //console.log('props:', this.props)
     return (
       <div className="task-list">
-      <h2>Queue</h2>
-        <FilterMap list={this.props.tasks} statusID={1} state={this.props}/>
+        <FilterMap header={"Queue"} list={this.props.tasks} statusID={1}/>
+        <FilterMap header={"In Progress"} list={this.props.tasks} statusID={2}/>
+        <FilterMap header={"Finished"} list={this.props.tasks} statusID={3}/>
       </div>
     );
   }

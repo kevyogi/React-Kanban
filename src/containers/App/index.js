@@ -13,10 +13,6 @@ import './styles.css';
 class App extends Component {
   constructor(){
     super();
-
-    this.state = {
-      tasks: []
-    }
   }
 
   componentWillMount(){
@@ -40,19 +36,11 @@ class App extends Component {
           <h1 id="header">Kanban</h1>
         </div>
 
+
         <div id="list-div">
-          <div>
-            <TaskList/>
-          </div>
-
-          <div>
-            <DoingList/>
-          </div>
-
-          <div>
-            <DoneList/>
-          </div>
+          <TaskList/>
         </div>
+
 
         <div id="newTaskDiv">
           <NewTaskForm/>
@@ -60,12 +48,6 @@ class App extends Component {
 
       </div>
     );
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {
-    tasks: state
   }
 }
 
@@ -87,8 +69,9 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const ConnectedApp = connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(App)
 
 export default ConnectedApp;
+
